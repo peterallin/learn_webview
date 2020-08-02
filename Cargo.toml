@@ -1,0 +1,8 @@
+[package]
+name = "learn-webview"
+version = "0.1.0"
+authors = ["Peter Allin <peter@peca.dk>"]
+edition = "2018"
+
+[dependencies]
+web-view="0.6"
