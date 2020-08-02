@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <script type="text/javascript">
+        function setCount1(value) {
+            document.getElementById('count1').innerText = value;
+        }
+
+        function setCount2(value) {
+            document.getElementById('count2').innerText = value;
+        }
+
+        function reset() {
+            window.external.invoke('reset');
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Hello world</h1>
+    <p id="count1"></p>
+    <p id="count2"></p>
+    <button onclick="reset()">Reset</button>
+</body>
+
+</html>

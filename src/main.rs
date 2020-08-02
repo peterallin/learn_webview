@@ -1,29 +1,7 @@
+use include_dir::{include_dir, Dir};
 use std::time::Duration;
 
-const HTML: &str = r#"
-<html>
-    <head>
-        <script type="text/javascript">
-            function setCount1(value) {
-                document.getElementById('count1').innerText = value;
-            }
-
-            function setCount2(value) {
-                document.getElementById('count2').innerText = value;
-            }
-
-            function reset() {
-                window.external.invoke('reset');
-            }
-        </script>
-    </head>
-    <body>
-        <h1>Hello world</h1>
-        <p id="count1"></p>
-        <p id="count2"></p>
-        <button onclick="reset()">Reset</button>
-    </body>
-</html>"#;
+const UI: Dir = include_dir!("ui");
 
 struct State {
     count1: u32,
@@ -31,13 +9,14 @@ struct State {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let html : &str = UI.get_file("index.html").unwrap().contents_utf8().unwrap();
     let state = State {
         count1: 0,
         count2: 0,
     };
     let wv = web_view::builder()
         .title("My hello world")
-        .content(web_view::Content::Html(HTML))
+        .content(web_view::Content::Html(html))
         .size(640, 480)
         .resizable(true)
         .debug(true)
